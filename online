@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+if nc -zw1 facebook.com 443; then
+  echo "Facebook is online.";exit 0
+  else
+     if nc -zw1 twitter.com 443; then
+     echo "Facebook is offline 🤷‍♀️"
+     echo "But as expected, Twitter is online.";exit 0
+     else
+        if nc -zw1 google.com 443; then
+           echo "Facebook and Twitter are offline."
+           echo "But Google do still exist and I dunno why.";exit 0
+           else
+              if nc -zw1 plasmmer.com 443; then
+                 echo "Facebook, Twitter and Google are offline; did they moved into web3?"
+                 echo "But yes, you are online.";exit 0
+                 else
+                    echo "You are offline.";exit 1
+fi
+fi
+fi
+fi
