@@ -1,22 +1,35 @@
 #!/bin/sh -e
 
 if nc -zw1 facebook.com 443; then
-  echo "Facebook is online.";exit 0
+  step_one="y"
   else
      if nc -zw1 twitter.com 443; then
-     echo "Facebook is offline 🤷‍♀️"
-     echo "But as expected, Twitter is online.";exit 0
+     step_two="y"
      else
         if nc -zw1 google.com 443; then
-           echo "Facebook and Twitter are offline."
-           echo "But Google do still exist and I dunno why.";exit 0
+           step_three="y"
            else
               if nc -zw1 plasmmer.com 443; then
-                 echo "Facebook, Twitter and Google are offline; did they moved into web3?"
-                 echo "But yes, you are online.";exit 0
+                 step_four="y"
                  else
-                    echo "You are offline.";exit 1
+                    offline="y"
 fi
 fi
 fi
+fi
+
+if [ "$1" != "" ]; then
+   if [ "$1" = "-s" ] || [ "$1" = "-q" ] || [ "$1" = "--silent" ] || [ "$1" = "--quiet" ]; then
+      if [ "$step_one" = "y" ]; then exit 0; fi
+      if [ "$step_two" = "y" ]; then exit 0; fi
+      if [ "$step_three" = "y" ]; then exit 0; fi
+      if [ "$step_four" = "y" ]; then exit 0; fi
+      if [ "$offline" = "y" ]; then exit 1; fi
+fi
+   else
+      if [ "$step_one" = "y" ]; then echo "Facebook is online.";exit 0; fi
+      if [ "$step_two" = "y" ]; then echo "Facebook is offline 🤷‍♀️";echo "But as expected, Twitter is online.";exit 0; fi
+      if [ "$step_three" = "y" ]; then echo "Facebook and Twitter are offline.";echo "But Google do still exist and I dunno why.";exit 0; fi
+      if [ "$step_four" = "y" ]; then echo "Facebook, Twitter and Google are offline; did they moved into web3?";echo "But yes, you are online in the classical web 2.0";exit 0; fi
+      if [ "$offline" = "y" ]; then echo "You are offline.";exit 1; fi
 fi
