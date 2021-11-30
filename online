@@ -1,15 +1,21 @@
 #!/bin/sh -e
 
-if nc -zw1 facebook.com 443  2>/dev/null; then
+if [ "$1" = "-s" ] || [ "$1" = "-q" ] || [ "$1" = "--silent" ] || [ "$1" = "--quiet" ]; then
+   silent="  2>/dev/null"
+   else
+      silent=""
+fi
+
+if nc -zw1 facebook.com 443$silent; then
   step_one="y"
   else
-     if nc -zw1 twitter.com 443  2>/dev/null; then
+     if nc -zw1 twitter.com 443$silent; then
      step_two="y"
      else
-        if nc -zw1 google.com 443  2>/dev/null; then
+        if nc -zw1 google.com 443$silent; then
            step_three="y"
            else
-              if nc -zw1 plasmmer.com 443  2>/dev/null; then
+              if nc -zw1 plasmmer.com 443$silent; then
                  step_four="y"
                  else
                     offline="y"
