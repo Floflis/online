@@ -7,3 +7,9 @@ if online -s; then
    else
       echo "❌ Its offline"
 fi
+
+Installing:
+
+Open terminal on the clonned repo folder, and type following by pressing `[ENTER]`:
+
+chmod +x install.sh && sh ./install.sh
