@@ -38,6 +38,7 @@ fi
       if [ "$step_three" = "y" ]; then echo "Facebook and Twitter are offline.";echo "But Google do still exist and I dunno why.";exit 0; fi
       if [ "$step_four" = "y" ]; then echo "Facebook, Twitter and Google are offline; did they moved into web3?";echo "But yes, you are online in the classical web 2.0";exit 0; fi
       if [ "$offline" = "y" ]; then echo "You are offline.";exit 1; fi
+      if [ "$offline" != "y" ]; then echo "You are online.";exit 0; fi
 fi
 
 if [ "$1" = "babyisalive" ]; then
