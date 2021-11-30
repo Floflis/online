@@ -31,11 +31,19 @@ fi
    else
       if [ "$step_one" = "y" ]; then echo "Facebook is online."; fi
       if [ "$step_two" = "y" ]; then echo "Facebook is offline 🤷‍♀️";echo "But as expected, Twitter is online."; fi
-      if [ "$step_three" = "y" ]; then echo "Facebook and Twitter are offline.";echo "But Google do still exist and I dunno why."; fi
+      if [ "$step_three" = "y" ]; then echo "Facebook and Twitter are offline.";echo "But Google still exist and I dunno why."; fi
       if [ "$step_four" = "y" ]; then echo "Facebook, Twitter and Google are offline; did they moved into web3?";echo "But yes, you are online in the classical web 2.0"; fi
       if [ "$offline" = "y" ]; then echo "You are offline.";exit 1; else echo "You are online.";exit 0; fi
 fi
 
 if [ "$1" = "babyisalive" ]; then
    exit 0
+fi
+
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+   echo "Use these commands after/together with 'online' command."
+   echo "Available flags:"
+   echo "   --silent, -s                Only output an exit code
+   echo "   --help, -h                  Shows all available commands"
+#   echo "   --version, -v               Shows info about OS name, version and build version"
 fi
