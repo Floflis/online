@@ -1,25 +1,43 @@
 #!/bin/sh -e
 
-if [ "$1" = "-s" ] || [ "$1" = "-q" ] || [ "$1" = "--silent" ] || [ "$1" = "--quiet" ]; then
-   silent="  2>/dev/null"
-   else
-      silent=""
+if [ "$1" = "babyisalive" ]; then
+   exit 0
 fi
+
+#if [ "$1" = "-s" ] || [ "$1" = "-q" ] || [ "$1" = "--silent" ] || [ "$1" = "--quiet" ]; then
+   #silent="443 2>/dev/null"
+   #silent=$(echo "443")
+   #ok=$($silent  &>/dev/null)
+   #ok="443"
+   #okthen="" > /dev/null""
+   #use1=""$(nc -zw1 facebook.com 443  &>/dev/null)""
+   #use2=""$(nc -zw1 twitter.com 443  &>/dev/null)""
+   #use3=""$(nc -zw1 google.com 443  &>/dev/null)""
+   #use4=""$(nc -zw1 plasmmer.com 443  &>/dev/null)""
+#   else
+      #okthen=""
+#      use1=""$(nc -zw1 facebook.com 443)""
+#      use2=""$(nc -zw1 twitter.com 443)""
+#      use3=""$(nc -zw1 google.com 443)""
+#      use4=""$(nc -zw1 plasmmer.com 443)""
+#fi
 offline=""
 
-if nc -zw1 facebook.com 443$silent; then
+if nc -zw1 facebook.com 443  2>/dev/null; then
   step_one="y"
+  echo "Test: online"
   else
-     if nc -zw1 twitter.com 443$silent; then
+     if nc -zw1 twitter.com 443  2>/dev/null; then
      step_two="y"
      else
-        if nc -zw1 google.com 443$silent; then
+        if nc -zw1 google.com 443  2>/dev/null; then
            step_three="y"
            else
-              if nc -zw1 plasmmer.com 443$silent; then
+              if nc -zw1 plasmmer.com 443  2>/dev/null; then
                  step_four="y"
                  else
                     offline="y"
+                    echo "Test: offline"
 fi
 fi
 fi
@@ -27,21 +45,18 @@ fi
 
 if [ "$1" != "" ]; then
    if [ "$1" = "-s" ] || [ "$1" = "-q" ] || [ "$1" = "--silent" ] || [ "$1" = "--quiet" ]; then
+      echo "Test: $step_one $step_two $step_three $step_four $offline"
       if [ "$step_one" = "y" ]; then exit 0; fi
       if [ "$step_two" = "y" ]; then exit 0; fi
       if [ "$step_three" = "y" ]; then exit 0; fi
       if [ "$step_four" = "y" ]; then exit 0; fi
       if [ "$offline" = "y" ]; then exit 1; fi
+      echo "Test: $step_one $step_two $step_three $step_four $offline"
 fi
    else
-      if [ "$step_one" = "y" ]; then echo "Facebook is online.";exit 0; fi
-      if [ "$step_two" = "y" ]; then echo "Facebook is offline 🤷‍♀️";echo "But as expected, Twitter is online.";exit 0; fi
-      if [ "$step_three" = "y" ]; then echo "Facebook and Twitter are offline.";echo "But Google do still exist and I dunno why.";exit 0; fi
-      if [ "$step_four" = "y" ]; then echo "Facebook, Twitter and Google are offline; did they moved into web3?";echo "But yes, you are online in the classical web 2.0";exit 0; fi
-      if [ "$offline" = "y" ]; then echo "You are offline.";exit 1; fi
-      if [ "$offline" != "y" ]; then echo "You are online.";exit 0; fi
-fi
-
-if [ "$1" = "babyisalive" ]; then
-   exit 0
+      if [ "$step_one" = "y" ]; then echo "Facebook is online."; fi
+      if [ "$step_two" = "y" ]; then echo "Facebook is offline 🤷‍♀️";echo "But as expected, Twitter is online."; fi
+      if [ "$step_three" = "y" ]; then echo "Facebook and Twitter are offline.";echo "But Google do still exist and I dunno why."; fi
+      if [ "$step_four" = "y" ]; then echo "Facebook, Twitter and Google are offline; did they moved into web3?";echo "But yes, you are online in the classical web 2.0"; fi
+      if [ "$offline" = "y" ]; then echo "You are offline.";exit 1; else echo "You are online.";exit 0; fi
 fi
