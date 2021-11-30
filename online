@@ -5,6 +5,7 @@ if [ "$1" = "-s" ] || [ "$1" = "-q" ] || [ "$1" = "--silent" ] || [ "$1" = "--qu
    else
       silent=""
 fi
+offline=""
 
 if nc -zw1 facebook.com 443$silent; then
   step_one="y"
