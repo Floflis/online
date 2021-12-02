@@ -43,7 +43,7 @@ fi
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
    echo "Use these commands after/together with 'online' command."
    echo "Available flags:"
-   echo "   --silent, -s                Only output an exit code
+   echo "   --silent, -s                Only output an exit code"
    echo "   --help, -h                  Shows all available commands"
 #   echo "   --version, -v               Shows info about OS name, version and build version"
 fi
