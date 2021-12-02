@@ -52,3 +52,11 @@ chmod +x install.sh && sh ./install.sh
 ```
 
 ----
+
+# How to use
+
+Open the Witchcraft/Prompt/Terminal and type:
+
+`online`
+
+For programatic use, head to [Usage](#usage).
